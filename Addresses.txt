@@ -1,9 +1,401 @@
-City,Street,State,PostalCode,Country
-BETTWS NEWYDD,33 Northgate Street,Eng,BD233BB,GB
-BIGBY,89 Northgate Street,Eng,PH88JX,GB
-OLD RAYNE,44 Horsefair Green,Eng,BA122QR,GB
-Aachen,Kapellenstr 15-19,Nordrhein-Westfalen,52078,GB
-Aachen,Steinkaulplatz 12,Nordrhein-Westfalen,52078,GB
-Aachen,Trierer Str 366,Nordrhein-Westfalen,52078,GB
-Amsterdam,Claude Debussylaan 34,Noord Holland,1082 MD,NL
-Berlin,Tucholskystraße 2,Bradenburg,10117,DE
+Country,City,Street,PostalCode,PhoneNet
+NL,Boxmeer,Beatrixstraat,5831 EA,485
+NL,Luyksgestel,Molenstraat,5575 BC,497
+NL,Tilburg,Haelenstraat,5045 AN,13
+NL,Amsterdam,Da Costakade,1053 XA,20
+NL,Zoeterwoude,Industrieweg,2382 NV,71
+NL,Heeze,De Boelakkers,5591 RA,40
+NL,Breugel,Van den Elsenstraat,5694 NH,499
+NL,Amsterdam,De Cuserstraat,1081 CL,20
+NL,Zaltbommel,Rozenbogerd,5301 KD,418
+NL,Ulvenhout,Gareelstraat,4851 TG,76
+NL,Nuenen,Johan Frisostraat,5671 XL,40
+NL,Almelo,Het Laar,7608 EK,546
+NL,Vlissingen,Schoolstraat,4381 JA,118
+NL,Nijmegen,De Gildekamp,6545 KK,24
+NL,Rucphen,Nijverheidstraat,4715 RZ,165
+NL,Arnhem,Boksbergenstraat,6825 BB,26
+NL,Grijpskerke,Oostkapelseweg,4364 AX,118
+NL,Den Haag,Hazelaarstraat,2563 VL,70
+NL,Gouda,Ridder van Catsweg,2804 RJ,182
+NL,Oldebroek,Zuiderzeestraatweg,8096 BP,525
+NL,Lelystad,Hofstede,8212 WH,320
+NL,Vught,Heiweg,5263 GH,73
+NL,Hellevoetsluis,Zeegat,3224 SH,181
+NL,Teteringen,Boekentveld,4847 SV,76
+NL,Rotterdam,Beukendaal,3075 LG,10
+NL,Rijssen,De Hagen,7461 LA,548
+NL,Zuid-Scharwoude,Buttersgroet,1722 KV,226
+NL,Uithuizermeeden,Hoofdstraat,9982 AG,595
+NL,Arnhem,Klarendalseweg,6822 GJ,26
+NL,Rotterdam,Lentewei,3075 PK,10
+NL,Amsterdam,Sint Willibrordusstraat,1073 VC,20
+NL,Schoonhoven,C.G. Roosweg,2871 MB,182
+NL,Zeist,Hoog Kanje,3708 DL,30
+NL,Alphen aan den Rijn,Honingzwam,2403 HT,172
+NL,Bergen op Zoom,Zwitserlandstraat,4614 KM,164
+NL,Urk,Zandplaat,8321 LL,527
+NL,Tilburg,Kartuizersstraat,5042 AW,13
+NL,Appelscha,Alle Wijtzesweg,8426 CV,516
+NL,Sassenheim,Westerstraat,2171 CG,252
+NL,Eindhoven,Generaal Linckerslaan,5623 JT,40
+NL,Nagele,Tarwehof,8308 BK,527
+NL,Enschede,Sabangstraat,7541 ZE,53
+NL,Kloetinge,Koningin Wilhelminastraat,4481 AB,113
+NL,Assen,Zwartwatersweg,9402 SL,592
+NL,Kollum,Kalmoes,9291 JM,511
+NL,Bussum,Gooilandseweg,1406 LE,35
+NL,Rotterdam,Bergweg,3036 BJ,10
+NL,Barchem,Ruurloseweg,7244 PC,573
+NL,Ouddorp,Duinkerkerweg,3253 AJ,187
+NL,Bakkeveen,Jarig van der Wielenwei,9243 SH,516
+NL,Hengelo,Johan Buziaustraat,7558 LL,74
+NL,Amsterdam,Amaliastraat,1052 GN,20
+NL,Groot-Ammers,Voorstraat,2964 AJ,184
+NL,Culemborg,Prijssestraat,4101 CN,345
+NL,Noordwijk,Duinwetering,2203 HM,71
+NL,Den Dungen,Grinsel,5275 JN,73
+NL,Den Haag,Engelenburgstraat,2571 XC,70
+NL,Grubbenvorst,Vinkenlaan,5971 CM,77
+NL,Den Haag,Steureiland,2492 NB,70
+NL,Weert,Geertenhof,6004 LH,495
+NL,Wierum,Iniastrjitte,9141 VG,519
+NL,Dalfsen,Kosterserf,7722 AG,529
+NL,Steenbergen,Kade,4651 BS,167
+NL,Amstelveen,Albert van Dalsumlaan,1187 RR,20
+NL,Den Haag,Wingerd,2496 VD,70
+NL,Groningen,Aquamarijnstraat,9743 PG,50
+NL,Zwaag,Klagerstuin,1689 JZ,229
+NL,Borculo,Het Eiland,7271 BK,545
+NL,Bilthoven,Oude Brandenburgerweg,3721 DX,30
+NL,Buurmalsen,Haagse Uitweg,4197 RC,345
+NL,Aerdenhout,Sparrenlaan,2111 AE,23
+NL,Katwijk,Oosterhof,2225 DW,485
+NL,Veenendaal,Turbinestraat,3903 LW,318
+NL,Naaldwijk,Oleander,2671 NN,174
+NL,Oudkarspel,Dorpsstraat,1724 RE,226
+NL,Rotterdam,Vestastraat,3089 RL,10
+NL,Oegstgeest,Willem de Merodelaan,2343 KC,71
+NL,Sint Philipsland,Krammerstraat,4675 CP,167
+NL,Varsselder-Veldhunten,Pastoor Reulinkstraat,7076 AP,315
+NL,Nijega,Finnen,9217 VV,512
+NL,Zwolle,Rousemate,8014 JZ,38
+NL,Ransdaal,Termoors,6311 BC,43
+NL,Lelystad,Cannenburch,8226 RR,320
+NL,Bilthoven,Bongerdlaan,3723 VB,30
+NL,Hasselt,De Poortmaat,8061 AS,38
+NL,Ede,Bennekomseweg,6717 LM,318
+NL,Naarden,Walgang,1411 LM,35
+NL,Zelhem,Zonnebloemstraat,7021 ZA,314
+NL,Groenekan,Prinsenlaan,3737 MJ,346
+NL,Almelo,Karel Doormanstraat,7603 VZ,546
+NL,Hilvarenbeek,Korte Dijk,5081 WG,13
+NL,Hoek,Hoekseweg,4542 PW,115
+NL,Rosmalen,De Buis,5247 LN,73
+NL,s-Gravenzande,Monsterseweg,2691 JJ,174
+NL,Wijchen,Ringlaan,6602 DP,24
+NL,Zeewolde,Noordereiland,3891 GE,36
+NL,Papendrecht,Tesselschadestraat,3351 GT,78
+NL,Sittard,Toon Hermanssingel,6132 BT,46
+NL,Hilversum,Erfgooiersstraat,1222 AW,35
+NL,Gouda,Woudestein,2804 GM,182
+NL,Amsterdam,Albrecht Durerstraat,1077 LX,20
+NL,Breda,David 't Kindtstraat,4827 CR,76
+NL,Barsingerhorn,Wadweg,1768 BZ,224
+NL,Liessel,Tramweg,5757 RK,493
+NL,Tilburg,Schubertstraat,5011 CR,13
+NL,Haaren,Haarendijk,5076 TM,411
+NL,Hilversum,Bakkerstraat,1221 GZ,35
+NL,Benschop,Eksterstraat,3405 WH,348
+NL,Bunnik,Lokhorstlaan,3981 ZC,30
+NL,Castricum,Willem de Rijkelaan,1901 TT,251
+NL,Wommels,t Bosk,8731 BK,515
+NL,Tegelen,Industriestraat,5931 PH,77
+NL,Groesbeek,Burgemeester Ottenhoffstraat,6561 CL,24
+NL,Roosendaal,Zundertseweg,4707 XE,165
+NL,Hoofddorp,Wilsonstraat,2131 PL,23
+NL,Hoogvliet,Schakelweg,3192 JM,6
+NL,Soest,Braamweg,3768 CH,35
+NL,Oss,Karel V Straat,5346 SC,412
+NL,Leidschendam,Noordsingel,2262 AW,70
+NL,Den Haag,Drebbelstraat,2522 DJ,70
+NL,s-Hertogenbosch,Het Hoenderland,5221 AT,73
+NL,Olst,Damshoekweg,8121 SB,570
+NL,Apeldoorn,Giessen,7333 LT,55
+NL,Wateringen,Het Tolland,2291 VX,174
+NL,Voorschoten,Douw van der Kraplaan,2252 AT,71
+NL,Neeritter,Haardstraat,6015 RB,475
+NL,Hellendoorn,Koetshuisstraat,7447 XN,548
+NL,Den Helder,Sloestraat,1784 JG,223
+NL,Middelburg,Baljuwlaan,4336 GK,118
+NL,Enter,Erve Hagemans,7468 JV,547
+NL,Eindhoven,Tetrodestraat,5623 EP,40
+NL,Den Dungen,Bramerslandstraat,5275 HE,73
+NL,Rijssen,Smittenbelt,7461 BH,548
+NL,Wijckel,Sanmar,8563 AN,514
+NL,De Westereen,De Acht,9271 AM,6
+NL,Balk,Minne Jeltesstrjitte,8561 AD,514
+NL,Utrecht,Nieuwravenstraat,3522 RL,30
+NL,Aalsmeer,Aalsmeerderweg,1432 EC,297
+NL,Balkbrug,De Wieken,7707 DR,523
+NL,Utrecht,Martin-Ovenweg,3555 HZ,30
+NL,Den Ham,t Sumpel,7683 AA,546
+NL,Landgraaf,Rossinipassage,6371 LK,45
+NL,Ittervoort,Brigittastraat,6014 AT,475
+NL,Den Haag,Rottermontstraat,2562 NG,70
+NL,Gouda,Constantijn Huygensstraat,2802 LS,182
+NL,IJhorst,Bakkerslaan,7955 AC,522
+NL,Langenboom,Venweg,5453 NC,486
+NL,Hendrik-Ido-Ambacht,Koog,3344 GH,78
+NL,Losser,Vlasakker,7582 AS,53
+NL,Enschede,Burgemeester Jacobsstraat,7543 TK,53
+NL,Marken,Walandweg,1156 DJ,299
+NL,Sliedrecht,Stationsweg,3362 HB,184
+NL,Rotterdam,Rubensstraat,3061 ZZ,10
+NL,Schiedam,Monseigneur Nolenslaan,3118 EE,10
+NL,Enschede,J.H.W. Robersstraat,7545 HC,53
+NL,Marrum,Hearrewei,9073 GA,518
+NL,Goutum,De Tolve,9084 BH,58
+NL,Amsterdam,Amstelveenseweg,1075 VT,20
+NL,Harich,Van der Feltzstraat,8571 RE,514
+NL,Leiden,Zoeterwoudseweg,2321 GL,71
+NL,Breda,Heksenkruid,4823 JL,76
+NL,Sint Willebrord,Geraniumstraat,4711 MB,6
+NL,Heemstede,Von Brucken Focklaan,2102 XB,23
+NL,Hengstdijk,Rummersdijkstraat,4585 PR,114
+NL,s-Gravenzande,Montessoristraat,2691 ZE,174
+NL,Heerhugowaard,Snuifmolen,1703 NN,72
+NL,Hardenberg,Elzenlaan,7771 DL,523
+NL,Den Haag,Mariastraat,2595 GN,70
+NL,Spijkenisse,Zwanenhoek,3201 HT,181
+NL,Ede,Talmalaan,6713 DP,318
+NL,Nieuw Vennep,Gelevinkstraat,2151 AK,6
+NL,Dordrecht,Aletta Jacobs-Erf,3315 EK,78
+NL,Egmond aan Den Hoef,Sabine van Beierenlaan,1934 GZ,6
+NL,Tilburg,Diepenveenstraat,5043 JL,13
+NL,Vlaardingen,Bernweg,3137 NC,10
+NL,Dussen,Zuideveldlaan,4271 XC,416
+NL,Breda,Olivier van Noortstraat,4812 RC,76
+NL,Roggel,Ophoven,6088 AE,475
+NL,Nisse,Kruiningenpolderweg,4443 RL,113
+NL,Gouderak,Jeruzalemstraat,2831 JE,182
+NL,Den Haag,Laan van Wateringse Veld,2548 CZ,70
+NL,Hengelo,Woolderesweg,7555 LP,74
+NL,Kerkrade,Massabiellestraat,6465 BK,45
+NL,Tegelen,Geldersebaan,5931 JP,77
+NL,Amsterdam,Hillegomstraat,1058 LS,20
+NL,Den Hout,Hespelaar,4911 AE,162
+NL,Middelharnis,De Hofjes,3241 ML,187
+NL,Eindhoven,Chamonixlaan,5627 KD,40
+NL,Oosterbeek,Johannahoeveweg,6861 WH,26
+NL,Otterlo,Harskamperweg,6731 AC,318
+NL,Dordrecht,Leeuwstraat,3318 VC,78
+NL,Apeldoorn,Hattemse Beek,7335 PD,55
+NL,Eindhoven,Ruurlostraat,5651 EC,40
+NL,Maarssen,Buitenweg,3602 ZD,346
+NL,Vorden,Brinkerhof,7251 WR,575
+NL,Amsterdam,Argostraat,1033 ED,20
+NL,Landgraaf,Baanstraat,6372 AD,45
+NL,Vleuten,Birkhoven,3452 JK,30
+NL,Dreumel,Julianastraat,6621 ZE,487
+NL,Wateringen,Poortweide,2291 EH,174
+NL,Breda,Vestkant,4814 EB,76
+NL,Bilthoven,Dravik,3723 TP,30
+NL,Eenrum,Kerkbuurt,9967 RR,595
+NL,Capelle aan den IJssel,Springersdiep,2904 EV,10
+NL,Bornerbroek,Spooldersweg,7627 RH,74
+NL,Rotterdam,Van Goghlaan,3055 PM,10
+NL,Zaandam,Jan Bouwmeesterstraat,1502 PR,75
+NL,Hengelo,Isaacstraat,7553 NJ,74
+NL,Vlaardingen,Asterstraat,3135 HB,10
+NL,Alphen,Nieuwe Schans,6626 BC,487
+NL,Wijchen,Heumenseweg,6603 CZ,24
+NL,Apeldoorn,Gentiaanstraat,7322 CK,55
+NL,Almelo,Treubstraat,7604 TK,546
+NL,Helmond,Wethouder van Nunenstraat,5706 TK,492
+NL,Maastricht,Duitsepoort,6221 HH,43
+NL,Oisterwijk,Scheepersdijk,5062 ED,13
+NL,Amsterdam,Paulus van Hemertstraat,1064 LK,20
+NL,Lelystad,Wold,8225 BE,320
+NL,Alphen aan den Rijn,Diamantstraat,2403 AX,172
+NL,Lelystad,Albatroslaan,8241 CE,320
+NL,Spijkenisse,Maasboulevard,3207 RE,181
+NL,Haarlem,Paul Krugerstraat,2021 XL,23
+NL,Epe,Hoofdstraat,8162 AH,578
+NL,Emmen,Tammingecamp,7824 GN,591
+NL,Eys,Vinkstraat,6287 BE,43
+NL,Baarlo,Snijderstraat,5991 MJ,77
+NL,Dinxperlo,Terborgseweg,7091 DR,315
+NL,Bergen,Oosterweg,1862 KD,72
+NL,Rhenen,Utrechtsestraatweg,3911 TX,317
+NL,Duiven,Doornenburgallee,6921 GT,316
+NL,Weert,Tromplaan,6004 ER,495
+NL,Amsterdam,Lamarckhof,1098 TK,20
+NL,Geertruidenberg,Heulweg,4931 ND,162
+NL,Rotterdam,Van Adrichemweg,3042 BN,10
+NL,Waalwijk,Van Harenstraat,5145 RH,416
+NL,Waaksens,Buorren,8845 SG,6
+NL,Bergen,Schilderslaan,5854 CD,72
+NL,Utrecht,Prinses Irenelaan,3554 HH,30
+NL,Spankeren,Loohof,6956 CM,313
+NL,Lelystad,Punter,8242 GH,320
+NL,Hoeven,Sprangweg,4741 RC,165
+NL,Oudewater,Utrechtsestraatweg,3421 GP,348
+NL,Leek,Midwolderweg,9351 PT,594
+NL,Amersfoort,Duifpolder,3825 JC,33
+NL,Dordrecht,Groen van Prinstererweg,3317 SN,78
+NL,Nijmegen,Lankforst,6538 GX,24
+NL,Dordrecht,Goudestein,3328 MC,78
+NL,Hoorn,Poolster,1622 EE,562
+NL,Badhoevedorp,Sloterweg,1171 CE,20
+NL,Nieuw Vennep,Reestein,2151 KB,6
+NL,Dieren,Goeman Borgesiusstraat,6951 BH,313
+NL,Deventer,Brink,7411 BV,570
+NL,Haarlem,Warschaustraat,2034 VK,23
+NL,Den Haag,Kobaltstraat,2544 ET,70
+NL,Rotterdam,Delfgaauwstraat,3037 LS,10
+NL,Zeewolde,Nienoord,3894 AP,36
+NL,Rotterdam,Frankendaal,3075 XR,10
+NL,Amsterdam,Sportstraat,1076 TV,20
+NL,Holten,Larenseweg,7451 NA,548
+NL,Veenendaal,Castor,3902 SJ,318
+NL,Houten,Wijnbouw,3991 NL,30
+NL,Den Haag,Paul Krugerlaan,2571 HK,70
+NL,Bilthoven,Putterlaan,3722 WT,30
+NL,Ommen,Egelantierstraat,7731 VL,529
+NL,Bunschoten-Spakenburg,Colijnstraat,3752 AP,33
+NL,Amsterdam,Wijenburg,1082 VS,20
+NL,Landgraaf,Europaweg-Noord,6374 CG,45
+NL,Harkema,Warmoltsstrjitte,9281 PR,512
+NL,Waalwijk,Zomerdijkweg,5145 PK,416
+NL,s-Hertogenbosch,Tesselschadestraat,5216 JW,73
+NL,Heerlen,BelgiÃ«laan,6414 HM,45
+NL,Reuver,Industriestraat,5953 LX,77
+NL,Woltersum,Kollerijweg,9795 PM,50
+NL,Rotterdam,Van Poeljeweg,3052 TM,10
+NL,s-Heerenhoek,Dregmansstraat,4453 AZ,6
+NL,Gramsbergen,Loozermars-Noord,7783 EP,524
+NL,Haaften,Dutry van Haeftenstraat,4175 EL,418
+NL,Hoogmade,Kerkstraat,2355 ZA,71
+NL,Apeldoorn,Parelvissersstraat,7323 CJ,55
+NL,Borculo,Lange Wal,7271 AN,545
+NL,Tilburg,Abdij van Egmondstraat,5037 CR,13
+NL,Velden,Wederik,5941 AZ,77
+NL,Leiden,Klikspaanweg,2324 LX,71
+NL,Leunen,Bershof,5809 BH,478
+NL,Almelo,Bornerbroeksestraat,7609 PJ,546
+NL,Woldendorp,Schildkamp,9946 RS,596
+NL,Amstelhoek,Amstelkade,1427 AR,297
+NL,s-Hertogenbosch,Brussellaan,5224 VJ,73
+NL,Emmeloord,Kloppenburgstraat,8302 GE,527
+NL,Deventer,Moreelsestraat,7412 SW,570
+NL,Ulicoten,Nieuwe Strumpt,5113 BX,13
+NL,Asten,Hemel,5721 HH,493
+NL,Dalerpeel,Steigerwijk,7753 TS,524
+NL,Zelhem,Markt,7021 AA,314
+NL,Groesbeek,Van Nispenstraat,6561 BD,24
+NL,Goirle,Beatrixstraat,5051 NB,13
+NL,Hem,Veilingstraat,1607 BC,228
+NL,Landgraaf,Ceintuurstraat,6372 HC,45
+NL,Almere,Kiel,1319 CL,36
+NL,Sneek,Tsjomme Wiardaleane,8605 CE,515
+NL,Middelburg,Jazzroute,4337 XB,118
+NL,Bovensmilde,Hoofdweg,9421 VG,592
+NL,Schoonebeek,Liaslaan,7761 BB,524
+NL,Nieuwegein,Nijpelsplantsoen,3431 ST,30
+NL,Leeuwarden,De Gronzen,8939 AR,58
+NL,Maasland,s Prinsensingel,3155 VK,10
+NL,Wezep,Callunastraat,8091 VV,38
+NL,Amersfoort,Plompstraat,3815 MX,33
+NL,Groningen,Vlierstraat,9741 HW,50
+NL,Amersfoort,Huiszoonstraat,3815 PW,33
+NL,Rotterdam,Doctor de Visserstraat,3038 TM,10
+NL,Katwijk,Vinkeweg,2223 JM,485
+NL,Almere,Schaakveld,1359 HL,36
+NL,Dordrecht,Stratosfeerstraat,3328 GR,78
+NL,Capelle aan den IJssel,Schonberglaan,2901 JA,10
+NL,Nieuwegein,Minervaburg,3437 GW,30
+NL,Den Dolder,Paltzerweg,3734 CT,30
+NL,Eibergen,Avinksstuw,7151 MS,545
+NL,Zwolle,Rodehaanstraat,8011 RR,38
+NL,Liessel,Kennelweg,5757 RJ,493
+NL,Heerlen,Veldmuis,6416 WD,45
+NL,Spijkenisse,Heijermansstraat,3202 VG,181
+NL,Vlijmen,Industriepark Vliedberg,5251 RG,73
+NL,Terheijden,Noordseweg,4844 PA,76
+NL,Brunssum,Schinkelstraat,6444 AD,45
+NL,Steenwijk,De Wanne,8332 LA,521
+NL,Roermond,Roerderweg,6041 NP,475
+NL,Haarle,Wittebroeksweg,7448 PS,548
+NL,Haarlem,Delftlaan,2024 CB,23
+NL,Weert,Diesterbaan,6006 TC,495
+NL,Castricum,Bizetstraat,1901 XR,251
+NL,Ferwert,It Suderheech,9172 RG,6
+NL,Dodewaard,Wilhelminalaan,6669 AC,488
+NL,Abcoude,Hoogstraat,1391 BV,294
+NL,Amersfoort,Poortersdreef,3824 DL,33
+NL,Reusel,Kippereind,5541 NG,497
+NL,Lent,Keimate,6663 KB,24
+NL,Borger,Torenakkers,9531 AV,599
+NL,Almelo,Sluitersveldssingel,7603 BJ,546
+NL,Delft,Wezelstraat,2623 CK,15
+NL,Leusden,Dioriet,3831 VT,33
+NL,Amsterdam,Loenermark,1025 TJ,20
+NL,Hilversum,Hazelaarlaan,1214 LK,35
+NL,Groningen,Aart van der Leeuwlaan,9721 TJ,50
+NL,Voorburg,Populierendreef,2272 HX,70
+NL,Apeldoorn,Kalmoesstraat,7322 NV,55
+NL,Haarlem,Jan Huijgenstraat,2012 VC,23
+NL,Woerden,Polanerzandweg,3446 CC,348
+NL,Soest,Wiardi Beckmanstraat,3762 HD,35
+NL,Sinderen,Harterinkdijk,7065 AP,315
+NL,Oost-Souburg,Braamstraat,4388 CP,118
+NL,Hoogvliet,Lisdodde,3191 JJ,6
+NL,Almere,Jimi Hendrixstraat,1311 JA,36
+NL,Amsterdam,Pieter Postpad,1067 DX,20
+NL,Zeist,Platolaan,3707 GJ,30
+NL,Enschede,Zijpendaal,7544 NS,53
+NL,Amsterdam,Weteringschans,1017 XV,20
+NL,Pijnacker,De Savornin Lohmanlaan,2641 WR,15
+NL,s-Hertogenbosch,De Vutter,5221 BD,73
+NL,Den Haag,Burgemeester Patijnlaan,2585 BL,70
+NL,Bunnik,Marsdijk,3981 HE,30
+NL,Heerde,Haneweg,8181 RZ,578
+NL,Dodewaard,Edisonring,6669 NB,488
+NL,Waalwijk,Willaertpark,5144 VN,416
+NL,Poortugaal,Achterweg,3171 EA,10
+NL,Zoetermeer,Van Aalstlaan,2722 RZ,79
+NL,Leerdam,Eikstraat,4142 CR,345
+NL,Den Haag,De Gaarde,2542 CK,70
+NL,Middelburg,Bellinkstraat,4331 GV,118
+NL,Bilthoven,Wagnerlaan,3723 JT,30
+NL,Haarlem,Zomerkade,2032 WB,23
+NL,Roosendaal,Van Goghlaan,4703 JB,165
+NL,Hilvarenbeek,Sint Catharinastraat,5081 VJ,13
+NL,Schaijk,Pastoor van Winkelstraat,5374 BL,486
+NL,Amsterdam,Korte Geuzenstraat,1056 KW,20
+NL,Eefde,Achterzoom,7211 NG,575
+NL,Obbicht,Bornerweg,6125 BH,46
+NL,Rosmalen,De Oude Kamp,5247 WK,73
+NL,Bleiswijk,Eendendreef,2665 TA,10
+NL,Hengelo,Breemarsweg,7553 HB,74
+NL,Meppel,Blankenstein,7943 PA,522
+NL,Almelo,Kogellaan,7602 JL,546
+NL,Rotterdam,Spiegelnisserkade,3031 VM,10
+NL,Haarlem,Petrus Planciusstraat,2012 TZ,23
+NL,Sint-Oedenrode,Gerbrandystraat,5491 CS,413
+NL,Soest,Plasweg,3768 AK,35
+NL,Zoetermeer,Marotplan,2728 EL,79
+NL,Den Haag,Carry van Bruggenhof,2548 MR,70
+NL,Landsmeer,Loevestein,1121 HE,20
+NL,Bilthoven,Jan Steenlaan,3723 BT,30
+NL,Amsterdam,Kinkerstraat,1053 EN,20
+NL,Lemelerveld,Achterkampweg,8153 RJ,572
+NL,Slijk-Ewijk,Grote Allee,6677 MA,481
+NL,Uitgeest,Benesserlaan,1911 VK,251
+NL,Den Haag,Bussumsestraat,2574 JM,70
+NL,Spijkenisse,Tritonpad,3204 TW,181
+NL,Meppen,Brinken,7855 PC,591
+NL,Apeldoorn,Kamerlingh Onnesstraat,7316 LN,55
+NL,Zutphen,Weg naar Laren,7203 HE,575
+NL,Groningen,Aquamarijnstraat,9743 PM,50

@@ -1,15 +1,16 @@
 #Credit for original script to Helge Klein https://helgeklein.com.
 #Adapted to allow higher numbers of users with the same information set.
 
+# Summary of hamal03 cahnges
+# Moved postal codes and phone prefix to address file
+# Create "Company" OU and employee and departments ou below that
+#    create department groups and add user to their department group
+# Filled Adrresses with Dutch addresses from fakenamegenerator.com.
+#
 # Summary of changes.
 # Reduced Male and Female names into one list for ease of expansion
 # Changed Displayname code to create each combination of names possible
 # Changed sAMAccountname generation to add unique account ID with orgShortName as suffix.
-
-
-# Known issues
-# Usercount (For me anyway) seems to be inaccurate when import completes. May be related to errorcheck compensation when usercount is reduced. Consistently seem to get many more users that intended.
-
 
 Set-StrictMode -Version 2
 $DebugPreference = "SilentlyContinue" # SilentlyContinue | Continue
@@ -22,169 +23,175 @@ Push-Location (Split-Path ($MyInvocation.MyCommand.Path))
 # Global variables
 #
 # User properties
-$ou = "OU=YourOUHere,DC=AC,DC=Local"         # Which OU to create the user in
-$initialPassword = "Password1"               # Initial password set for the user
-$orgShortName = "AC"                         # This is used to build a user's sAMAccountName
-$dnsDomain = "AC.local"                      # Domain is used for e-mail address and UPN
-$company = "AC co"                           # Used for the user object's company attribute
-$departments = (                             # Departments and associated job titles to assign to the users
-                  @{"Name" = "Finance & Accounting"; Positions = ("Manager", "Accountant", "Data Entry")},
-                  @{"Name" = "Human Resources"; Positions = ("Manager", "Administrator", "Officer", "Coordinator")},
-                  @{"Name" = "Sales"; Positions = ("Manager", "Representative", "Consultant")},
-                  @{"Name" = "Marketing"; Positions = ("Manager", "Coordinator", "Assistant", "Specialist")},
-                  @{"Name" = "Engineering"; Positions = ("Manager", "Engineer", "Scientist")},
-                  @{"Name" = "Consulting"; Positions = ("Manager", "Consultant")},
-                  @{"Name" = "IT"; Positions = ("Manager", "Engineer", "Technician")},
-                  @{"Name" = "Planning"; Positions = ("Manager", "Engineer")},
-                  @{"Name" = "Contracts"; Positions = ("Manager", "Coordinator", "Clerk")},
-                  @{"Name" = "Purchasing"; Positions = ("Manager", "Coordinator", "Clerk", "Purchaser")}
-               )
-[System.Collections.ArrayList]$phoneCountryCodes = @{"NL" = "+31"; "GB" = "+44"; "DE" = "+49"}         # Country codes for the countries used in the address file
+$ADdomain="ad.rwlab.lcl"             # AD domain to fill with fake users
+$mailDomain = "rwlab.lcl"            # Domain is used for e-mail address (leaf empty for AD domain)
+$BaseOU = "OU=RWLab"                 # "Company" OU under the domain root
+$empou = "OU=Employees"              # OU under "Company" OU where the users are created
+$dptou = "OU=Departments"            # OU under "Company" OU where Department groups are created
+$initialPassword = "S3cr37P@ssw0rd"  # Initial password set for the user
+$company = "RWLab POC"               # Used for the user object's company attribute
+$departments = (                     # Departments and associated job titles to assign to the users
+    @{"Name" = "Finance & Accounting"; Positions = ("Manager", "Accountant", "Data Entry")},
+    @{"Name" = "Human Resources"; Positions = ("Manager", "Administrator", "Officer", "Coordinator")},
+    @{"Name" = "Sales"; Positions = ("Manager", "Representative", "Consultant")},
+    @{"Name" = "Engineering"; Positions = ("Manager", "Engineer", "Scientist")},
+    # @{"Name" = "Marketing"; Positions = ("Manager", "Coordinator", "Assistant", "Specialist")},
+    # @{"Name" = "Consulting"; Positions = ("Manager", "Consultant")},
+    # @{"Name" = "Planning"; Positions = ("Manager", "Engineer")},
+    # @{"Name" = "Contracts"; Positions = ("Manager", "Coordinator", "Clerk")},
+    # @{"Name" = "Purchasing"; Positions = ("Manager", "Coordinator", "Clerk", "Purchaser")},
+    @{"Name" = "IT"; Positions = ("Manager", "Engineer", "Technician", "Administrator")}
+)
+$addRFC2307 = $false                # Add Unix attributes
+$nameAccounts = $false              # use sAMAccountName based on first letter + last name i.o. "p" + employeenumber
+
+# Country codes for the countries used in the address file
+[System.Collections.ArrayList]$phoneCountryCodes = @{"NL" = "+31"; "GB" = "+44"; "DE" = "+49"}
 
 # Other parameters
-$userCount = 5000                           # How many users to create
-$locationCount = 2                          # How many different offices locations to use counting from 0, where 0 is 1
+$userCount = 200                    # How many users to create
 
-# Files used
-$firstNameFile = "Firstnames.txt"            # Format: FirstName
-$lastNameFile = "Lastnames.txt"              # Format: LastName
-$addressFile = "Addresses.txt"               # Format: City,Street,State,PostalCode,Country
-$postalAreaFile = "PostalAreaCode.txt"       # Format: PostalCode,PhoneAreaCode
+# TSV Files used
+$firstNameFile = "Firstnames.txt"   # Format: FirstName,Gender
+$lastNameFile = "Lastnames.txt"     # Format: LastName
+$addressFile = "Addresses.txt"      # Format: Street,PostalCode,City,PhoneAreaCode
 
-# Check locationCount before importing Files else it chokes when it's set too high
-if ($locationCount -ge $phoneCountryCodes.Count) {Write-Error ("ERROR: selected locationCount is higher than configured phoneCountryCodes2. You may want to configure $($phoneCountryCodes.Count-1) as max locationCount");continue}
+# Generate base part of DN from AD Domain
+$ADDN=""
+foreach ($elem in $ADdomain.split(".")) {
+    $ADDN = $ADDN + "DC=" + $elem + ","
+}
+$ADDN = $ADDN.TrimEnd(",")
+
+# Create the OU's
+New-ADOrganizationalUnit -Name $BaseOU.TrimStart("OU=") -Path ($ADDN)
+New-ADOrganizationalUnit -Name $empou.TrimStart("OU=") -Path ($BaseOU + "," + $ADDN)
+New-ADOrganizationalUnit -Name $dptou.TrimStart("OU=") -Path ($BaseOU + "," + $ADDN)
+$empou = $empou + "," + $BaseOU + "," + $ADDN
+
+# Create the groups
+foreach ($dpt in $departments)
+{
+    New-ADGroup -Name $dpt.Name -GroupCategory Security -GroupScope Global -Path ($dptou `
+        + "," + $BaseOU + "," + $ADDN)
+}
 
 #
 # Read input files
 #
-$firstNames = Import-CSV $firstNameFile -Encoding utf7 # This will remove some "illegal" characters from the names as those characters are not displayed properly (in WS2012R2)
-$lastNames = Import-CSV $lastNameFile -Encoding utf7 # This will remove some "illegal" characters from the names as those characters are not displayed properly (in WS2012R2)
-$addresses = Import-CSV $addressFile -Encoding utf7 # This will remove some "illegal" characters from the names as those characters are not displayed properly (in WS2012R2)
-$postalAreaCodesTemp = Import-CSV $postalAreaFile
-
-# Convert the postal & phone area code object list into a hash
-$postalAreaCodes = @{}
-foreach ($row in $postalAreaCodesTemp)
-{
-   $postalAreaCodes[$row.PostalCode] = $row.PhoneAreaCode
-}
-$postalAreaCodesTemp = $null
+# utf7 will remove some "illegal" characters from the names as those characters
+# are not displayed properly (in WS2012R2)
+$firstNames = Import-CSV $firstNameFile -Encoding utf7 
+$lastNames = Import-CSV $lastNameFile -Encoding utf7
+$addresses = Import-CSV $addressFile -Encoding utf7
 
 #
 # Preparation
 #
 $securePassword = ConvertTo-SecureString -AsPlainText $initialPassword -Force
 
-# Select the configured number of locations from the address list
-$locations = @()
-$addressIndexesUsed = @()
-for ($i = 0; $i -le $locationCount; $i++)
-{
-   # Determine a random address
-   $addressIndex = -1
-   do
-   {
-      $addressIndex = Get-Random -Minimum 0 -Maximum $addresses.Count
-   } while ($addressIndexesUsed -contains $addressIndex)
-   
-   # Store the address in a location variable
-   $street = $addresses[$addressIndex].Street
-   $city = $addresses[$addressIndex].City
-   $state = $addresses[$addressIndex].State
-   $postalCode = $addresses[$addressIndex].PostalCode
-   $country = $addresses[$addressIndex].Country
-   $locations += @{"Street" = $street; "City" = $city; "State" = $state; "PostalCode" = $postalCode; "Country" = $country}
-   
-   # Do not use this address again
-   $addressIndexesUsed += $addressIndex
-}
-
-
 #
 # Create the users
 #
-
-#
-# Randomly determine this user's properties
-#
-
 # Create (and overwrite) new array lists [0]
 $CSV_Fname = New-Object System.Collections.ArrayList
 $CSV_Lname = New-Object System.Collections.ArrayList
+$CSV_Addr = New-Object System.Collections.ArrayList
 
-#Populate entire $firstNames and $lastNames into the array
+#Populate entire $firstNames, $lastNames and $addresses into the array
 $CSV_Fname.Add($firstNames)
 $CSV_Lname.Add($lastNames)
-   
+$CSV_Addr.Add($addresses)
+
 # Sex & name
 $i = 0
-if ($i -lt $userCount) 
+while ($true)
 {
-    foreach ($firstname in $firstNames)
-{
-    foreach ($lastname in $lastnames)
+    if ($i -lt $userCount)
     {
-   $Fname = ($CSV_Fname | Get-Random).FirstName
-   $Lname = ($CSV_Lname | Get-Random).LastName
-
-   #Capitalise first letter of each name
-   $displayName = (Get-Culture).TextInfo.ToTitleCase($Fname + " " + $Lname)
-
-   # Address
-   $locationIndex = Get-Random -Minimum 0 -Maximum $locations.Count
-   $street = $locations[$locationIndex].Street
-   $city = $locations[$locationIndex].City
-   $state = $locations[$locationIndex].State
-   $postalCode = $locations[$locationIndex].PostalCode
-   $country = $locations[$locationIndex].Country
-   $matchcc = $phoneCountryCodes.GetEnumerator() | Where-Object {$_.Name -eq $country} # match the phone country code to the selected country above
-   
-   # Department & title
-   $departmentIndex = Get-Random -Minimum 0 -Maximum $departments.Count
-   $department = $departments[$departmentIndex].Name
-   $title = $departments[$departmentIndex].Positions[$(Get-Random -Minimum 0 -Maximum $departments[$departmentIndex].Positions.Count)]
-
-   # Phone number
-   if ($matchcc.Name -notcontains $country)
-   {
-      Write-Debug ("ERROR1: No country code found for $country")
-      continue
+        $fnidx = Get-Random -Minimum 0 -Maximum $firstNames.Count
+        $lnidx = Get-Random -Minimum 0 -Maximum $lastNames.Count
+        $adidx = Get-Random -Minimum 0 -Maximum $addresses.Count
+        $Fname = $firstNames[$fnidx].FirstName
+        $Lname = $lastNames[$lnidx].LastName
+        $Addrs = $addresses[$adidx]
+      
+        #Capitalise first letter of each name
+        $displayName = $Fname + " " + $Lname
+      
+        # Address
+        $street = $Addrs.Street + " " + (Get-Random -Minimum 1 -Maximum 300)
+        $city = $Addrs.City
+        $postalCode = $Addrs.PostalCode
+        $country = $Addrs.Country
+        # match the phone country code to the selected country above
+        $matchcc = $phoneCountryCodes.GetEnumerator() | Where-Object {$_.Name -eq $country}
+      
+        # Department & title
+        $departmentIndex = Get-Random -Minimum 0 -Maximum $departments.Count
+        $department = $departments[$departmentIndex].Name
+        $title = $departments[$departmentIndex].Positions[$(Get-Random -Minimum 0 `
+            -Maximum $departments[$departmentIndex].Positions.Count)]
+      
+        # Phone number
+        if ($matchcc.Name -notcontains $country)
+        {
+            Write-Debug ("ERROR: No country code found for $country")
+            continue
+        }
+        $homePhone = ($matchcc.Value + ($Addrs.PhoneNet) + " " + (Get-Random `
+            -Minimum 1000000000 -Maximum 9999999999)).Substring(0,13)
+      
+        # Build the sAMAccountName: $orgShortName + employee number
+        $employeeNumber = Get-Random -Minimum 50000 -Maximum 99999
+        if ($nameAccounts)
+        {
+            $sAMAccountName = ( $Fname.Substring(0,1) + $Lname ).ToLower().replace(' ','')
+        }
+        else
+        {
+            $sAMAccountName = 'p' + $employeeNumber
+        }
+        if (-not ( $mailDomain ))
+        {
+            $mailDomain = ( $ADdomain )
+        }
+        $emailAddress = ( $Fname + '.' + $Lname + '@' + $mailDomain ).replace(' ','')
+        $userExists = $false
+        Try   { $userExists = Get-ADUser -LDAPFilter "(sAMAccountName=$sAMAccountName)" }
+        Catch { }
+        if ($userExists)
+        {
+            continue
+        }
+      
+        #
+        # Create the user account
+        #
+        New-ADUser -SamAccountName $sAMAccountName -Name $displayName -Path $empou `
+            -AccountPassword $securePassword -Enabled $true -GivenName $Fname `
+            -Surname $Lname -DisplayName $displayName -EmailAddress $emailAddress `
+            -StreetAddress $street -City $city -PostalCode $postalCode `
+            -Country $country -UserPrincipalName "$sAMAccountName@$ADdomain" `
+            -Company $company -Department $department -EmployeeNumber $employeeNumber `
+            -Title $title -HomePhone $homePhone
+        if ($addRFC2307) {
+            # Add RFC2307 attributes
+            $homeDirectory="/home/" + $sAMAccountName
+            Set-ADUser -Identity $sAMAccountName -add @{uid="$sAMAccountName" ; `
+                uidNumber="$employeeNumber" ; gidNumber="$employeeNumber" ; `
+                gecos="$displayName" ; loginShell="/bin/bash" ; homeDirectory="$homeDirectory"}
+        }
+        # Add user to group
+        Add-ADGroupMember -Identity "$department" -Members "$sAMAccountName"
+      
+        "Created user #" + ($i+1) + ", $displayName, $sAMAccountName, $title, $department, $homePhone, $country, $street, $city"
+        $i = $i+1
+      
+        if ($i -ge $userCount)
+        {
+            "Script Complete. Exiting"
+            exit
+        }
    }
-   if (-not $postalAreaCodes.ContainsKey($postalCode))
-   {
-      Write-Debug ("ERROR2: No country code found for $country")
-      continue
-   }
-   $officePhone = $matchcc.Value + " " + $postalAreaCodes[$postalCode].Substring(1) + " " + (Get-Random -Minimum 100000 -Maximum 1000000)
-   
-   # Build the sAMAccountName: $orgShortName + employee number
-   $employeeNumber = Get-Random -Minimum 100000 -Maximum 1000000
-   $sAMAccountName = $orgShortName + $employeeNumber
-   $userExists = $false
-   Try   { $userExists = Get-ADUser -LDAPFilter "(sAMAccountName=$sAMAccountName)" }
-   Catch { }
-   if ($userExists)
-   {
-      $i=$i-1
-      if ($i -lt 0)
-      {$i=0}
-      continue
-   }
-
-   #
-   # Create the user account
-   #
-      New-ADUser -SamAccountName $sAMAccountName -Name $displayName -Path $ou -AccountPassword $securePassword -Enabled $true -GivenName $Fname -Surname $Lname -DisplayName $displayName -EmailAddress "$Fname.$Lname@$dnsDomain" -StreetAddress $street -City $city -PostalCode $postalCode -State $state -Country $country -UserPrincipalName "$sAMAccountName@$dnsDomain" -Company $company -Department $department -EmployeeNumber $employeeNumber -Title $title -OfficePhone $officePhone
-
-   "Created user #" + ($i+1) + ", $displayName, $sAMAccountName, $title, $department, $officePhone, $country, $street, $city"
-   $i = $i+1
-   $employeeNumber = $employeeNumber+1
-
-      if ($i -ge $userCount) 
-   {
-       "Script Complete. Exiting"
-       exit
-   }
-}
-}
 }
